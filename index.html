@@ -100,10 +100,118 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #475569;
         }
+
+        /* Intro Sequence Animations */
+        .fade-in {
+            animation: fadeIn 1.5s ease-in forwards;
+        }
+
+        .fade-out {
+            animation: fadeOut 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .intro-screen {
+            display: none;
+            position: absolute;
+            inset: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .intro-screen.active {
+            display: flex;
+        }
     </style>
 </head>
 
 <body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-purple-500/30">
+
+    <!-- INTRO OVERLAY -->
+    <div id="intro-overlay"
+        class="fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center transition-colors duration-1000">
+
+        <!-- Screen 1 -->
+        <div id="screen-1" class="intro-screen active">
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-slate-900 z-0"></div>
+            <div class="relative z-10 max-w-2xl fade-in">
+                <h1 class="text-3xl md:text-5xl font-light text-white mb-6 tracking-wide">"Destiny moves where your
+                    <span class="text-purple-400 font-normal">attention</span> goes."
+                </h1>
+                <p class="text-slate-400 text-lg tracking-widest uppercase">Your awareness is the key</p>
+            </div>
+        </div>
+
+        <!-- Screen 2 -->
+        <div id="screen-2" class="intro-screen">
+            <div class="absolute inset-0 bg-gradient-to-br from-amber-900/20 to-slate-900 z-0"></div>
+            <div class="relative z-10 max-w-2xl">
+                <h1 class="text-3xl md:text-5xl font-light text-white tracking-wide">You are here because you are <span
+                        class="text-amber-400 font-normal">ready</span>.</h1>
+            </div>
+        </div>
+
+        <!-- Screen 3 -->
+        <div id="screen-3" class="intro-screen">
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 to-slate-900 z-0"></div>
+            <div class="relative z-10 max-w-2xl flex flex-col items-center">
+                <div
+                    class="w-32 h-32 mb-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 blur-xl opacity-50 animate-pulse">
+                </div>
+                <div class="text-6xl mb-6">🧘</div>
+                <h1 class="text-3xl md:text-5xl font-light text-white mb-4 tracking-wide">Heal the mind.</h1>
+                <h1 class="text-3xl md:text-5xl font-light text-white tracking-wide">Hold the <span
+                        class="text-indigo-400 font-normal">inner child</span>.</h1>
+            </div>
+        </div>
+
+        <!-- Screen 4 (Login/Signup) -->
+        <div id="screen-4" class="intro-screen">
+            <div
+                class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-20 z-0">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-transparent to-slate-950 z-0"></div>
+            <div class="relative z-10 flex flex-col items-center">
+                <img src="logo.png" alt="Cosmyn Logo"
+                    class="w-24 h-24 rounded-3xl shadow-2xl shadow-purple-500/30 mb-8 animate-float">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-2 tracking-tight">Cosmyn</h1>
+                <p class="text-slate-400 text-xl mb-12 tracking-wide">The Social Network for Your Soul</p>
+
+                <button onclick="endIntro()"
+                    class="group relative px-8 py-4 bg-white text-slate-950 rounded-full font-bold text-lg transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+                    <span class="relative z-10 flex items-center gap-2">
+                        Begin Journey <i data-lucide="arrow-right"
+                            class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- BACKGROUND EFFECTS -->
     <div class="fixed inset-0 pointer-events-none z-0">
@@ -570,6 +678,50 @@
                     }, 3000);
                 });
         }
+        function runIntroSequence() {
+            const screens = [1, 2, 3, 4];
+            let currentScreen = 1;
+
+            // Screen 1 duration: 3.5s
+            setTimeout(() => {
+                transitionScreen(1, 2);
+            }, 3500);
+
+            // Screen 2 duration: 3.5s
+            setTimeout(() => {
+                transitionScreen(2, 3);
+            }, 7000);
+
+            // Screen 3 duration: 3.5s
+            setTimeout(() => {
+                transitionScreen(3, 4);
+            }, 10500);
+        }
+
+        function transitionScreen(from, to) {
+            const fromEl = document.getElementById(`screen-${from}`);
+            const toEl = document.getElementById(`screen-${to}`);
+
+            // Fade out current
+            fromEl.classList.add('fade-out');
+            fromEl.classList.remove('active');
+
+            // Fade in next
+            toEl.classList.add('active');
+            toEl.querySelector('div.relative').classList.add('fade-in');
+        }
+
+        function endIntro() {
+            const overlay = document.getElementById('intro-overlay');
+            overlay.style.opacity = '0';
+            overlay.style.pointerEvents = 'none';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 1000);
+        }
+
+        // Start sequence on load
+        window.addEventListener('load', runIntroSequence);
     </script>
 </body>
 
