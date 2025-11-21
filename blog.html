@@ -15,10 +15,10 @@
         }
 
         .glass-card {
-            background: rgba(248, 250, 252, 0.7);
+            background: rgba(30, 41, 59, 0.4);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .text-gradient {
@@ -34,16 +34,16 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #f1f5f9;
+            background: #0f172a;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+            background: #334155;
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+            background: #475569;
         }
 
         @keyframes pulse-glow {
@@ -66,16 +66,16 @@
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 overflow-x-hidden selection:bg-purple-500/30">
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-purple-500/30">
 
     <!-- BACKGROUND EFFECTS -->
     <div class="fixed inset-0 pointer-events-none z-0">
         <div
-            class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-purple-400/30 rounded-full blur-[120px] animate-pulse-glow">
+            class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse-glow">
         </div>
-        <div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-indigo-400/20 rounded-full blur-[120px]">
+        <div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px]">
         </div>
-        <div class="absolute top-[40%] left-[20%] w-[300px] h-[300px] bg-amber-400/20 rounded-full blur-[100px]"></div>
+        <div class="absolute top-[40%] left-[20%] w-[300px] h-[300px] bg-amber-500/10 rounded-full blur-[100px]"></div>
     </div>
 
     <!-- NAVIGATION -->
@@ -83,17 +83,17 @@
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-2">
                 <img src="logo.png" alt="Cosmyn Logo" class="w-10 h-10 rounded-xl shadow-lg shadow-purple-500/20">
-                <span class="font-bold text-2xl tracking-tight text-slate-900">Cosmyn</span>
+                <span class="font-bold text-2xl tracking-tight text-white">Cosmyn</span>
             </a>
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700">
-                <a href="index.html#features" class="hover:text-slate-900 transition-colors">Features</a>
-                <a href="index.html#journey" class="hover:text-slate-900 transition-colors">Journeys</a>
-                <a href="index.html#academy" class="hover:text-slate-900 transition-colors">Academy</a>
-                <a href="index.html#wellness" class="hover:text-slate-900 transition-colors">Wellness</a>
-                <a href="blog.html" class="text-slate-900 transition-colors">Blog</a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="index.html#features" class="hover:text-white transition-colors">Features</a>
+                <a href="index.html#journey" class="hover:text-white transition-colors">Journeys</a>
+                <a href="index.html#academy" class="hover:text-white transition-colors">Academy</a>
+                <a href="index.html#wellness" class="hover:text-white transition-colors">Wellness</a>
+                <a href="blog.html" class="text-white transition-colors">Blog</a>
             </div>
             <button onclick="window.location.href='index.html#early-access'"
-                class="bg-slate-900 text-white hover:bg-slate-800 px-6 py-2.5 rounded-full font-bold text-sm transition-all transform hover:scale-105 shadow-lg">
+                class="bg-white text-slate-950 hover:bg-slate-200 px-6 py-2.5 rounded-full font-bold text-sm transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                 Join Early Access
             </button>
         </div>
@@ -107,7 +107,7 @@
                 <i data-lucide="sparkles" class="w-4 h-4 text-purple-400"></i>
                 <span class="text-sm font-medium text-purple-300">Cosmic Insights & Updates</span>
             </div>
-            <h1 class="text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-slate-900 mb-4">
+            <h1 class="text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white mb-4">
                 The Cosmyn <span class="text-gradient">Blog</span>
             </h1>
             <p class="text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto">
@@ -133,10 +133,10 @@
                                 class="bg-amber-500/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full">Featured</span>
                             <span class="text-slate-500 text-sm">Nov 21, 2025</span>
                         </div>
-                        <h2 class="text-3xl font-bold text-slate-900 mb-4 leading-tight">
+                        <h2 class="text-3xl font-bold text-white mb-4 leading-tight">
                             Understanding Your Moon Sign: The Key to Emotional Intelligence
                         </h2>
-                        <p class="text-slate-600 mb-6 leading-relaxed">
+                        <p class="text-slate-300 mb-6 leading-relaxed">
                             Your Moon sign reveals your emotional nature, inner world, and what you need to feel secure.
                             Discover how understanding this placement can transform your relationships and
                             self-awareness.
@@ -155,7 +155,7 @@
     <!-- BLOG POSTS GRID -->
     <section class="relative z-10 py-12 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-2xl font-bold text-slate-900 mb-8">Recent Posts</h2>
+            <h2 class="text-2xl font-bold text-white mb-8">Recent Posts</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 <!-- Blog Post 1 -->
@@ -171,7 +171,7 @@
                                 class="bg-blue-500/20 text-blue-300 text-xs font-bold px-2 py-1 rounded">Astrology</span>
                             <span class="text-slate-500 text-xs">Nov 18, 2025</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                             The Age of Aquarius: What It Really Means
                         </h3>
                         <p class="text-slate-400 text-sm leading-relaxed mb-4">
@@ -199,7 +199,7 @@
                                 class="bg-pink-500/20 text-pink-300 text-xs font-bold px-2 py-1 rounded">Relationships</span>
                             <span class="text-slate-500 text-xs">Nov 15, 2025</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                             Synastry 101: Reading Relationship Charts
                         </h3>
                         <p class="text-slate-400 text-sm leading-relaxed mb-4">
@@ -227,7 +227,7 @@
                                 class="bg-green-500/20 text-green-300 text-xs font-bold px-2 py-1 rounded">Wellness</span>
                             <span class="text-slate-500 text-xs">Nov 12, 2025</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                             Planetary Hours for Manifestation
                         </h3>
                         <p class="text-slate-400 text-sm leading-relaxed mb-4">
@@ -255,7 +255,7 @@
                                 class="bg-amber-500/20 text-amber-300 text-xs font-bold px-2 py-1 rounded">Tarot</span>
                             <span class="text-slate-500 text-xs">Nov 9, 2025</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                             Tarot for Beginners: Reading Your First Spread
                         </h3>
                         <p class="text-slate-400 text-sm leading-relaxed mb-4">
@@ -283,7 +283,7 @@
                                 class="bg-purple-500/20 text-purple-300 text-xs font-bold px-2 py-1 rounded">Spirituality</span>
                             <span class="text-slate-500 text-xs">Nov 6, 2025</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                             Mercury Retrograde Survival Guide
                         </h3>
                         <p class="text-slate-400 text-sm leading-relaxed mb-4">
@@ -311,7 +311,7 @@
                                 class="bg-indigo-500/20 text-indigo-300 text-xs font-bold px-2 py-1 rounded">Meditation</span>
                             <span class="text-slate-500 text-xs">Nov 3, 2025</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                             Creating Sacred Space in Modern Life
                         </h3>
                         <p class="text-slate-400 text-sm leading-relaxed mb-4">
@@ -336,28 +336,28 @@
             <div>
                 <div class="flex items-center gap-2 mb-4">
                     <img src="logo.png" alt="Cosmyn Logo" class="w-8 h-8 rounded-xl">
-                    <span class="font-bold text-xl text-slate-900">Cosmyn</span>
+                    <span class="font-bold text-xl text-white">Cosmyn</span>
                 </div>
                 <p class="text-sm text-slate-400">The social network for your soul.</p>
             </div>
             <div>
-                <h4 class="font-bold text-slate-900 mb-4">Product</h4>
+                <h4 class="font-bold text-white mb-4">Product</h4>
                 <ul class="space-y-2 text-sm text-slate-400">
-                    <li><a href="index.html#features" class="hover:text-slate-900 transition-colors">Features</a></li>
-                    <li><a href="index.html#journey" class="hover:text-slate-900 transition-colors">Journeys</a></li>
-                    <li><a href="index.html#academy" class="hover:text-slate-900 transition-colors">Academy</a></li>
+                    <li><a href="index.html#features" class="hover:text-white transition-colors">Features</a></li>
+                    <li><a href="index.html#journey" class="hover:text-white transition-colors">Journeys</a></li>
+                    <li><a href="index.html#academy" class="hover:text-white transition-colors">Academy</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold text-slate-900 mb-4">Company</h4>
+                <h4 class="font-bold text-white mb-4">Company</h4>
                 <ul class="space-y-2 text-sm text-slate-400">
-                    <li><a href="blog.html" class="hover:text-slate-900 transition-colors">Blog</a></li>
-                    <li><a href="#" class="hover:text-slate-900 transition-colors">About</a></li>
-                    <li><a href="#" class="hover:text-slate-900 transition-colors">Contact</a></li>
+                    <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold text-slate-900 mb-4">Connect</h4>
+                <h4 class="font-bold text-white mb-4">Connect</h4>
                 <div class="flex gap-3">
                     <a href="#"
                         class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-slate-700 transition-colors">
