@@ -7,7 +7,9 @@
     <title>Cosmyn | The Social Network for Your Soul</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Montserrat:wght@700;800&display=swap"
+        rel="stylesheet">
     <link rel="icon" type="image/png" href="logo.png">
     <style>
         body {
@@ -156,6 +158,12 @@
     <div id="intro-overlay"
         class="fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center transition-colors duration-1000">
 
+        <!-- Skip Button -->
+        <button onclick="skipIntro()"
+            class="absolute top-8 right-8 z-50 text-slate-500 hover:text-white text-sm font-bold tracking-widest uppercase transition-colors">
+            Skip Intro
+        </button>
+
         <!-- Screen 1 -->
         <div id="screen-1" class="intro-screen active">
             <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-slate-900 z-0"></div>
@@ -192,9 +200,8 @@
             </div>
             <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-transparent to-slate-950 z-0"></div>
             <div class="relative z-10 flex flex-col items-center">
-                <img src="logo.png" alt="Cosmyn Logo"
-                    class="w-24 h-24 rounded-3xl shadow-2xl shadow-purple-500/30 mb-8 animate-float">
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight">Cosmyn</h1>
+                <h1 class="text-6xl md:text-8xl font-extrabold text-white mb-12 tracking-[0.2em] uppercase"
+                    style="font-family: 'Montserrat', sans-serif;">Cosmyn</h1>
 
                 <button onclick="endIntro()"
                     class="group relative px-8 py-4 bg-white text-slate-950 rounded-full font-bold text-lg transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
@@ -686,24 +693,35 @@
                     }, 3000);
                 });
         }
+        // Intro Sequence Logic
+        let introTimeouts = [];
+
         function runIntroSequence() {
             const screens = [1, 2, 3, 4];
             let currentScreen = 1;
 
             // Screen 1 duration: 3.5s
-            setTimeout(() => {
-                transitionScreen(1, 2);
-            }, 3500);
+            introTimeouts.push(setTimeout(() => { transitionScreen(1, 2); }, 3500));
 
             // Screen 2 duration: 3.5s
-            setTimeout(() => {
-                transitionScreen(2, 3);
-            }, 7000);
+            introTimeouts.push(setTimeout(() => { transitionScreen(2, 3); }, 7000));
 
             // Screen 3 duration: 3.5s
-            setTimeout(() => {
-                transitionScreen(3, 4);
-            }, 10500);
+            introTimeouts.push(setTimeout(() => { transitionScreen(3, 4); }, 10500));
+        }
+
+        function skipIntro() {
+            // Clear all pending transitions
+            introTimeouts.forEach(id => clearTimeout(id));
+
+            // Find current active screen
+            const activeScreen = document.querySelector('.intro-screen.active');
+            const activeId = activeScreen ? parseInt(activeScreen.id.split('-')[1]) : 1;
+
+            // If not already on last screen, jump to it
+            if (activeId !== 4) {
+                transitionScreen(activeId, 4);
+            }
         }
 
         function transitionScreen(from, to) {
