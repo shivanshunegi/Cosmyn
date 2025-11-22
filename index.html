@@ -153,11 +153,16 @@
         /* Shooting Star Animation */
         .shooting-star {
             position: absolute;
-            height: 1px;
-            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-            width: 200px;
+            height: 2px;
+            /* Tail fades from transparent (left) to white (right/head) */
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 1) 100%);
+            width: 400px;
+            /* Very long tail */
             opacity: 0;
-            transform-origin: left;
+            /* Start rotated for diagonal movement */
+            transform: rotate(-45deg);
+            transform-origin: right;
+            /* Pivot around the head */
         }
 
         /* Fireball Head */
@@ -165,64 +170,60 @@
             content: '';
             position: absolute;
             right: 0;
+            /* Head at the front */
             top: 50%;
             transform: translateY(-50%);
             width: 6px;
             height: 6px;
             background: #fff;
             border-radius: 50%;
-            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 20px 4px rgba(168, 85, 247, 0.6);
-            /* Purple/White Glow */
+            /* Intense Glow */
+            box-shadow:
+                0 0 15px 5px rgba(255, 255, 255, 0.9),
+                0 0 30px 10px rgba(192, 132, 252, 0.8),
+                0 0 50px 15px rgba(168, 85, 247, 0.5);
         }
 
         @keyframes shoot {
             0% {
-                transform: translate(0, 0) rotate(35deg) scaleX(0.8);
-                opacity: 0;
-            }
-
-            5% {
+                transform: translate(-500px, -500px) rotate(45deg);
                 opacity: 1;
             }
 
-            15% {
-                transform: translate(120vw, 80vh) rotate(35deg) scaleX(1);
-                opacity: 0;
-            }
-
             100% {
-                transform: translate(120vw, 80vh) rotate(35deg) scaleX(1);
+                transform: translate(calc(100vw + 500px), calc(100vh + 500px)) rotate(45deg);
                 opacity: 0;
             }
         }
 
         /* Random Positioning & Timing */
+        /* Duration set to 1s as requested */
         .star-1 {
-            top: -10%;
-            left: 10%;
-            animation: shoot 6s linear infinite;
+            top: 0;
+            left: 20%;
+            animation: shoot 1s linear infinite;
             animation-delay: 0s;
         }
 
         .star-2 {
-            top: -10%;
-            left: 40%;
-            animation: shoot 7s linear infinite;
-            animation-delay: 2.5s;
+            top: 0;
+            left: 50%;
+            animation: shoot 1s linear infinite;
+            animation-delay: 3s;
         }
 
         .star-3 {
-            top: 20%;
-            left: -10%;
-            animation: shoot 5s linear infinite;
-            animation-delay: 4s;
+            top: 0;
+            left: 80%;
+            animation: shoot 1s linear infinite;
+            animation-delay: 1.5s;
         }
 
         .star-4 {
-            top: -10%;
-            left: 70%;
-            animation: shoot 8s linear infinite;
-            animation-delay: 1s;
+            top: 20%;
+            left: 0;
+            animation: shoot 1s linear infinite;
+            animation-delay: 4.5s;
         }
     </style>
 </head>
