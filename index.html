@@ -149,6 +149,23 @@
         .intro-screen.active {
             display: flex;
         }
+
+        /* Radiating Glow Animation */
+        @keyframes radiate-white {
+
+            0%,
+            100% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
+            }
+
+            50% {
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 255, 255, 0.5), 0 0 80px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .animate-radiate {
+            animation: radiate-white 3s ease-in-out infinite;
+        }
     </style>
 </head>
 
@@ -207,7 +224,7 @@
             </div>
             <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-transparent to-slate-950 z-0"></div>
             <div class="relative z-10 flex flex-col items-center">
-                <h1 class="text-6xl md:text-8xl font-extrabold text-white mb-12 tracking-[0.2em] uppercase"
+                <h1 class="text-6xl md:text-8xl font-extrabold text-white mb-12 tracking-[0.2em] uppercase animate-radiate"
                     style="font-family: 'Montserrat', sans-serif;">Cosmyn</h1>
 
                 <button onclick="endIntro()"
