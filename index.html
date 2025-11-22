@@ -158,12 +158,6 @@
     <div id="intro-overlay"
         class="fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center transition-colors duration-1000">
 
-        <!-- Skip Button -->
-        <button onclick="skipIntro()"
-            class="absolute top-8 right-8 z-50 text-slate-500 hover:text-white text-sm font-bold tracking-widest uppercase transition-colors">
-            Skip Intro
-        </button>
-
         <!-- Screen 1 -->
         <div id="screen-1" class="intro-screen active">
             <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-slate-900 z-0"></div>
@@ -172,6 +166,10 @@
                     <span class="text-purple-400 font-normal">attention</span> goes."
                 </h1>
                 <p class="text-slate-400 text-lg tracking-widest uppercase">Your awareness is the key</p>
+                <button onclick="nextSlide()"
+                    class="mt-12 text-slate-500 hover:text-white transition-colors animate-bounce">
+                    <i data-lucide="chevron-down" class="w-8 h-8"></i>
+                </button>
             </div>
         </div>
 
@@ -181,6 +179,10 @@
             <div class="relative z-10 max-w-2xl">
                 <h1 class="text-3xl md:text-5xl font-light text-white tracking-wide">You are here because you are <span
                         class="text-amber-400 font-normal">ready</span>.</h1>
+                <button onclick="nextSlide()"
+                    class="mt-12 text-slate-500 hover:text-white transition-colors animate-bounce">
+                    <i data-lucide="chevron-down" class="w-8 h-8"></i>
+                </button>
             </div>
         </div>
 
@@ -189,6 +191,10 @@
             <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-slate-900 z-0"></div>
             <div class="relative z-10 max-w-2xl flex flex-col items-center">
                 <h1 class="text-3xl md:text-5xl font-light text-white mb-4 tracking-wide">Heal the mind.</h1>
+                <button onclick="nextSlide()"
+                    class="mt-12 text-slate-500 hover:text-white transition-colors animate-bounce">
+                    <i data-lucide="chevron-down" class="w-8 h-8"></i>
+                </button>
             </div>
         </div>
 
@@ -660,7 +666,7 @@
             btn.disabled = true;
 
             // Google Apps Script Web App URL
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwMoFoeoLcMG2qPE1kC6bs6iZjFOzg9lyGy-ZahHA4Gcyy4YZojqm0DAn1-h9MTBcvXrA/exec';
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwMoFoeoLcMG2qPE1kC6bs6iZjFOzg9lyGy-ZahHA4Gcyy4YZojqm0DAn1-h9MTBcvXrS/exec';
 
             fetch(SCRIPT_URL, {
                 method: 'POST',
@@ -696,34 +702,33 @@
                 });
         }
         // Intro Sequence Logic
-        let introTimeouts = [];
+        let currentIntroStep = 1;
+        let introTimeout;
 
         function runIntroSequence() {
-            const screens = [1, 2, 3, 4];
-            let currentScreen = 1;
-
-            // Screen 1 duration: 3.5s
-            introTimeouts.push(setTimeout(() => { transitionScreen(1, 2); }, 3500));
-
-            // Screen 2 duration: 3.5s
-            introTimeouts.push(setTimeout(() => { transitionScreen(2, 3); }, 7000));
-
-            // Screen 3 duration: 3.5s
-            introTimeouts.push(setTimeout(() => { transitionScreen(3, 4); }, 10500));
+            // Start with Screen 1
+            scheduleNextSlide(1);
         }
 
-        function skipIntro() {
-            // Clear all pending transitions
-            introTimeouts.forEach(id => clearTimeout(id));
-
-            // Find current active screen
-            const activeScreen = document.querySelector('.intro-screen.active');
-            const activeId = activeScreen ? parseInt(activeScreen.id.split('-')[1]) : 1;
-
-            // If not already on last screen, jump to it
-            if (activeId !== 4) {
-                transitionScreen(activeId, 4);
+        function scheduleNextSlide(step) {
+            currentIntroStep = step;
+            // Auto-advance after 3.5s if not the last screen
+            if (step < 4) {
+                introTimeout = setTimeout(() => {
+                    nextSlide();
+                }, 3500);
             }
+        }
+
+        function nextSlide() {
+            if (currentIntroStep >= 4) return;
+
+            // Clear existing timeout to prevent double-jump
+            clearTimeout(introTimeout);
+
+            const nextStep = currentIntroStep + 1;
+            transitionScreen(currentIntroStep, nextStep);
+            scheduleNextSlide(nextStep);
         }
 
         function transitionScreen(from, to) {
