@@ -169,7 +169,7 @@
 
         <!-- Screen 2 -->
         <div id="screen-2" class="intro-screen">
-            <div class="absolute inset-0 bg-gradient-to-br from-amber-900/20 to-slate-900 z-0"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-slate-900 z-0"></div>
             <div class="relative z-10 max-w-2xl">
                 <h1 class="text-3xl md:text-5xl font-light text-white tracking-wide">You are here because you are <span
                         class="text-amber-400 font-normal">ready</span>.</h1>
@@ -178,7 +178,7 @@
 
         <!-- Screen 3 -->
         <div id="screen-3" class="intro-screen">
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 to-slate-900 z-0"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-slate-900 z-0"></div>
             <div class="relative z-10 max-w-2xl flex flex-col items-center">
                 <h1 class="text-3xl md:text-5xl font-light text-white mb-4 tracking-wide">Heal the mind.</h1>
             </div>
@@ -186,8 +186,9 @@
 
         <!-- Screen 4 (Login/Signup) -->
         <div id="screen-4" class="intro-screen">
-            <div
-                class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-20 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-slate-900 z-0"></div>
+            <div id="stars-bg"
+                class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-0 transition-opacity duration-1000 z-0">
             </div>
             <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-transparent to-slate-950 z-0"></div>
             <div class="relative z-10 flex flex-col items-center">
@@ -716,6 +717,13 @@
             // Fade in next
             toEl.classList.add('active');
             toEl.querySelector('div.relative').classList.add('fade-in');
+
+            // Handle Stars Background for Screen 4
+            if (to === 4) {
+                setTimeout(() => {
+                    document.getElementById('stars-bg').style.opacity = '0.2';
+                }, 100);
+            }
         }
 
         function endIntro() {
