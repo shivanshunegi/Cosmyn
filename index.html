@@ -147,6 +147,91 @@
         .intro-screen.active {
             display: flex;
         }
+
+        /* Planet Visuals */
+        .planet-container {
+            perspective: 1000px;
+        }
+
+        .planet {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.5s ease;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5) inset, 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .planet-sun {
+            background: radial-gradient(circle at 30% 30%, #fcd34d, #f59e0b, #b45309);
+            box-shadow: 0 0 60px #f59e0b;
+        }
+
+        .planet-mercury {
+            background: radial-gradient(circle at 30% 30%, #e2e8f0, #94a3b8, #475569);
+        }
+
+        .planet-venus {
+            background: radial-gradient(circle at 30% 30%, #fbcfe8, #f472b6, #be185d);
+        }
+
+        .planet-earth {
+            background: radial-gradient(circle at 30% 30%, #4ade80, #3b82f6, #1e3a8a);
+        }
+
+        .planet-mars {
+            background: radial-gradient(circle at 30% 30%, #fca5a5, #ef4444, #991b1b);
+        }
+
+        .planet-jupiter {
+            background: radial-gradient(circle at 30% 30%, #fde047, #eab308, #854d0e);
+        }
+
+        .planet-saturn {
+            background: radial-gradient(circle at 30% 30%, #cbd5e1, #64748b, #334155);
+            position: relative;
+        }
+
+        .planet-saturn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(20deg);
+            width: 280px;
+            height: 60px;
+            border: 20px solid rgba(148, 163, 184, 0.4);
+            border-radius: 50%;
+        }
+
+        /* Rahu - Bodyless (Smoky, top focus) */
+        .planet-rahu {
+            background: radial-gradient(circle at 50% 30%, #a855f7, #581c87, #000000);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            filter: drop-shadow(0 -10px 20px rgba(168, 85, 247, 0.5));
+        }
+
+        /* Ketu - Headless (Fiery, bottom focus) */
+        .planet-ketu {
+            background: radial-gradient(circle at 50% 70%, #fb923c, #c2410c, #431407);
+            mask-image: linear-gradient(to top, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, black 40%, transparent 100%);
+            filter: drop-shadow(0 10px 20px rgba(251, 146, 60, 0.5));
+        }
+
+        .planet-nav-btn {
+            transition: all 0.3s ease;
+        }
+
+        .planet-nav-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .planet-nav-btn.active {
+            border-color: #a855f7;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+        }
     </style>
 </head>
 
@@ -241,307 +326,79 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="relative z-10 pt-40 pb-24 px-6">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+    <!-- PLANETARY LIFE PATH INTERFACE -->
+    <section id="life-path-container"
+        class="min-h-screen flex flex-col items-center justify-center relative z-10 pt-20 pb-10 px-6">
 
-            <!-- Left: Copy -->
-            <div class="space-y-8 text-center lg:text-left">
-                <div
-                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-                    <span class="relative flex h-2 w-2">
-                        <span
-                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-                    </span>
-                    <span class="text-xs font-bold text-amber-300 tracking-wide uppercase">The App is Here</span>
-                </div>
-
-                <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white">
-                    Find Your <br>
-                    <span class="text-gradient">Cosmic Tribe</span>
-                </h1>
-
-                <p class="text-lg text-slate-400 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                    Cosmyn is the world's first spiritual ecosystem. Combining the community of Reddit, the learning of
-                    Duolingo, and the guidance of professional therapy.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <button onclick="openEarlyAccess()"
-                        class="px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-bold shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
-                        <span>Join the Waitlist</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </button>
-                    <button
-                        class="px-8 py-4 bg-slate-800 text-slate-200 rounded-xl font-bold hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
-                        <i data-lucide="play-circle" class="w-5 h-5"></i>
-                        <span>Watch Trailer</span>
-                    </button>
-                </div>
-
-                <div class="pt-8 flex items-center justify-center lg:justify-start gap-4 text-sm text-slate-500">
-                    <div class="flex -space-x-2">
-                        <img src="https://i.pravatar.cc/100?img=1"
-                            class="w-8 h-8 rounded-full border-2 border-slate-950" alt="User">
-                        <img src="https://i.pravatar.cc/100?img=5"
-                            class="w-8 h-8 rounded-full border-2 border-slate-950" alt="User">
-                        <img src="https://i.pravatar.cc/100?img=8"
-                            class="w-8 h-8 rounded-full border-2 border-slate-950" alt="User">
-                    </div>
-                    <p>Joined by 10,000+ Seekers</p>
-                </div>
-            </div>
-
-            <!-- Right: UI Mockup (The "Screenshot") -->
-            <div class="relative lg:h-[600px] flex items-center justify-center animate-float">
-                <!-- Blob behind phone -->
-                <div
-                    class="absolute inset-0 bg-gradient-to-tr from-purple-500/30 to-amber-500/20 rounded-full blur-3xl transform scale-75">
-                </div>
-
-                <!-- Phone Frame -->
-                <div
-                    class="relative w-[300px] h-[600px] bg-slate-950 rounded-[40px] border-8 border-slate-800 shadow-2xl overflow-hidden ring-1 ring-white/10">
-
-
-                    <!-- App Content -->
-                    <img src="app-screenshot-1.png" class="w-full h-full object-cover" alt="Cosmyn App Interface">
-                </div>
-            </div>
+        <!-- Main Planet Display -->
+        <div class="planet-container mb-12 relative">
+            <div id="current-planet" class="planet planet-sun"></div>
         </div>
-    </section>
 
-    <!-- FEATURE 1: COMMUNITY -->
-    <section id="features" class="py-24 relative">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="order-2 md:order-1 relative animate-float-delayed">
-                    <!-- Mockup: Feed Card -->
-                    <div
-                        class="glass-card p-6 rounded-3xl transform rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="flex items-center gap-3">
-                                <div
-                                    class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-indigo-500 flex items-center justify-center font-bold text-white">
-                                    L</div>
-                                <div>
-                                    <div class="text-white font-bold text-sm">LunaWalker</div>
-                                    <div class="text-xs text-blue-400">Saturn Journey</div>
-                                </div>
-                            </div>
-                            <span class="text-xs text-slate-500">2h ago</span>
-                        </div>
-                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
-                            Has anyone else noticed the shift since Mercury went direct? My communication feels clearer
-                            but my dreams are wild.
-                            <span class="text-purple-400">#MercuryDirect</span>
-                        </p>
-                        <div class="flex items-center gap-6 pt-4 border-t border-white/5 text-slate-400 text-sm">
-                            <div class="flex items-center gap-2 text-amber-400"><i data-lucide="zap"
-                                    class="w-4 h-4"></i> 124</div>
-                            <div class="flex items-center gap-2"><i data-lucide="message-circle" class="w-4 h-4"></i> 45
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Floating Badge -->
-                    <div
-                        class="absolute -top-4 -right-4 bg-indigo-600 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg">
-                        Reddit-Style Forum
-                    </div>
-                </div>
-                <div class="order-1 md:order-2">
-                    <div
-                        class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6 text-purple-400">
-                        <i data-lucide="users" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Connect with your <span
-                            class="text-purple-400">Cosmic Tribe</span></h2>
-                    <p class="text-slate-400 text-lg leading-relaxed mb-6">
-                        Stop explaining your placements to people who don't get it. Join auto-generated groups based on
-                        your specific chart—like the "Saturn-Mars Conjunction Club" or "Scorpio Moon Support."
-                    </p>
-                    <ul class="space-y-3 text-slate-300">
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2"
-                                class="w-5 h-5 text-green-400"></i> Filter by Transits & Signs</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2"
-                                class="w-5 h-5 text-green-400"></i> Earn Magic Points for advice</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2"
-                                class="w-5 h-5 text-green-400"></i> Private Group Chats</li>
-                    </ul>
-                </div>
-            </div>
+        <!-- Dialogue Area -->
+        <div class="max-w-2xl text-center mb-12 min-h-[120px]">
+            <h2 id="planet-name" class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Sun</h2>
+            <p id="planet-message" class="text-xl md:text-2xl text-slate-600 font-light leading-relaxed">"Shine your
+                light without apology."</p>
         </div>
-    </section>
 
-    <!-- FEATURE 2: JOURNEY -->
-    <section id="journey" class="py-24 relative bg-slate-900/30 border-y border-white/5">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <div
-                        class="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center mb-6 text-amber-400">
-                        <i data-lucide="zap" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Gamify your <span
-                            class="text-amber-400">Spiritual Growth</span></h2>
-                    <p class="text-slate-400 text-lg leading-relaxed mb-6">
-                        Turn astrological wisdom into daily habits. Weak Saturn? Join the "Saturn Journey" for 2.5 years
-                        of discipline-building tasks.
-                    </p>
-                    <ul class="space-y-3 text-slate-300">
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2"
-                                class="w-5 h-5 text-green-400"></i> Daily Quests & Rituals</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2"
-                                class="w-5 h-5 text-green-400"></i> Track XP & Level Up</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2"
-                                class="w-5 h-5 text-green-400"></i> Real-life impact analysis</li>
-                    </ul>
-                </div>
-                <div class="relative animate-float">
-                    <!-- Mockup: Saturn Card -->
-                    <div
-                        class="bg-gradient-to-br from-indigo-900 to-slate-900 p-6 rounded-3xl border border-indigo-500/30 shadow-2xl relative overflow-hidden">
-                        <div class="absolute -right-10 -top-10 w-32 h-32 bg-indigo-500/20 rounded-full blur-3xl"></div>
-                        <div class="flex justify-between items-start mb-6 relative z-10">
-                            <div>
-                                <h2 class="text-xl font-bold text-white">Saturn Journey</h2>
-                                <p class="text-indigo-200 text-sm">Discipline & Structure</p>
-                            </div>
-                            <div
-                                class="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center text-2xl">
-                                🪐</div>
-                        </div>
+        <!-- Controls -->
+        <div class="flex flex-col items-center gap-8 w-full max-w-4xl">
 
-                        <!-- Tasks -->
-                        <div class="space-y-3 relative z-10">
-                            <div
-                                class="bg-slate-800/50 p-3 rounded-xl flex items-center justify-between border border-white/5">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center"><i
-                                            data-lucide="check" class="w-3 h-3 text-white"></i></div>
-                                    <span class="text-sm text-slate-400 line-through">Make Bed</span>
-                                </div>
-                                <span class="text-xs font-bold text-amber-400">+10 XP</span>
-                            </div>
-                            <div
-                                class="bg-slate-800/80 p-3 rounded-xl flex items-center justify-between border border-white/10">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-5 h-5 rounded-full border-2 border-slate-500"></div>
-                                    <span class="text-sm text-white">Face a Fear</span>
-                                </div>
-                                <span class="text-xs font-bold text-amber-400">+50 XP</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FEATURE 3: ACADEMY & WELLNESS GRID -->
-    <section id="academy" class="py-24 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">A Complete <span
-                        class="text-gradient">Ecosystem</span></h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">More than just horoscopes. We provide the tools for deep
-                    learning and healing.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Academy Card -->
-                <div class="glass-card p-8 rounded-3xl hover:border-purple-500/50 transition-all group">
-                    <div
-                        class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6 text-purple-400 group-hover:scale-110 transition-transform">
-                        <i data-lucide="book-open" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Astral Academy</h3>
-                    <p class="text-slate-400 mb-6">Duolingo-style learning for astrology, tarot, and the occult.
-                        Bite-sized lessons, quizzes, and certificates.</p>
-
-                    <!-- Mini UI Mockup -->
-                    <div class="flex items-center justify-center gap-4 mt-4 opacity-80">
-                        <div class="flex flex-col items-center">
-                            <div
-                                class="w-10 h-10 rounded-full bg-purple-600 border-2 border-purple-400 flex items-center justify-center text-white">
-                                <i data-lucide="check" class="w-4 h-4"></i>
-                            </div>
-                            <div class="h-6 w-1 bg-purple-600/50"></div>
-                        </div>
-                        <div class="flex flex-col items-center pt-6">
-                            <div
-                                class="w-12 h-12 rounded-full bg-white border-4 border-amber-400 flex items-center justify-center text-purple-900 animate-bounce">
-                                <i data-lucide="star" class="w-6 h-6"></i>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div
-                                class="w-10 h-10 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center text-slate-500">
-                                <i data-lucide="lock" class="w-4 h-4"></i>
-                            </div>
-                            <div class="h-6 w-1 bg-slate-800"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Wellness Card -->
-                <div class="glass-card p-8 rounded-3xl hover:border-green-500/50 transition-all group">
-                    <div
-                        class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-6 text-green-400 group-hover:scale-110 transition-transform">
-                        <i data-lucide="stethoscope" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Astro-Therapy</h3>
-                    <p class="text-slate-400 mb-6">Professional support for existential crises. Connect with therapists
-                        who understand your Saturn Return.</p>
-
-                    <!-- Mini UI Mockup -->
-                    <div class="bg-slate-800/50 p-3 rounded-xl border border-white/5 flex items-center gap-3 mt-4">
-                        <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center text-lg">👩‍⚕️
-                        </div>
-                        <div class="flex-1">
-                            <div class="text-sm font-bold text-white">Dr. Elara Vance</div>
-                            <div class="text-[10px] text-slate-400">Specialty: Shadow Work</div>
-                        </div>
-                        <div class="text-green-400 text-xs font-bold bg-green-400/10 px-2 py-1 rounded-full">Available
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA SECTION -->
-    <section class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-indigo-950/30 to-slate-950"></div>
-        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
-            <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-6">Ready to Ascend?</h2>
-            <p class="text-xl text-slate-400 mb-10">Join the waiting list today and get a free comprehensive Birth Chart
-                analysis when we launch.</p>
-
-            <button onclick="openEarlyAccess()"
-                class="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white transition-all duration-200 bg-gradient-to-r from-amber-500 to-purple-600 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:scale-105 shadow-[0_0_30px_rgba(251,191,36,0.4)]">
-                <span class="mr-2">Secure Early Access</span>
-                <i data-lucide="sparkles" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+            <!-- Shuffle Button -->
+            <button onclick="shufflePlanets()"
+                class="px-8 py-3 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800 transition-all shadow-lg flex items-center gap-2">
+                <i data-lucide="shuffle" class="w-5 h-5"></i> Shuffle Destiny
             </button>
-            <p class="mt-4 text-sm text-slate-500">Limited spots available for Beta.</p>
+
+            <!-- Planet Navigation -->
+            <div class="flex flex-wrap justify-center gap-4 mt-4">
+                <button onclick="selectPlanet('sun')"
+                    class="planet-nav-btn w-10 h-10 rounded-full bg-amber-400 border-2 border-transparent active"
+                    title="Sun"></button>
+                <button onclick="selectPlanet('mercury')"
+                    class="planet-nav-btn w-10 h-10 rounded-full bg-slate-400 border-2 border-transparent"
+                    title="Mercury"></button>
+                <button onclick="selectPlanet('venus')"
+                    class="planet-nav-btn w-10 h-10 rounded-full bg-pink-400 border-2 border-transparent"
+                    title="Venus"></button>
+                <button onclick="selectPlanet('earth')"
+                    class="planet-nav-btn w-10 h-10 rounded-full bg-blue-500 border-2 border-transparent"
+                    title="Earth"></button>
+                <button onclick="selectPlanet('mars')"
+                    class="planet-nav-btn w-10 h-10 rounded-full bg-red-500 border-2 border-transparent"
+                    title="Mars"></button>
+                <button onclick="selectPlanet('jupiter')"
+                    class="planet-nav-btn w-10 h-10 rounded-full bg-yellow-400 border-2 border-transparent"
+                    title="Jupiter"></button>
+                <button onclick="selectPlanet('saturn')"
+                    class="planet-nav-btn w-10 h-10 rounded-full bg-slate-600 border-2 border-transparent"
+                    title="Saturn"></button>
+                <button onclick="selectPlanet('rahu')"
+                    class="planet-nav-btn w-10 h-10 rounded-full bg-purple-700 border-2 border-transparent"
+                    title="Rahu"></button>
+                <button onclick="selectPlanet('ketu')"
+                    class="planet-nav-btn w-10 h-10 rounded-full bg-orange-700 border-2 border-transparent"
+                    title="Ketu"></button>
+            </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="border-t border-white/5 py-12 bg-slate-950">
+    <!-- Footer (Simplified) -->
+    <footer class="relative z-10 py-8 border-t border-slate-200/50 mt-auto">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-2">
                 <img src="logo.png" alt="Cosmyn Logo" class="w-8 h-8 rounded-lg">
-                <span class="font-bold text-xl text-white">Cosmyn</span>
+                <span class="font-bold text-xl text-slate-900">Cosmyn</span>
             </div>
             <div class="text-slate-500 text-sm">
                 &copy; 2025 Cosmyn Inc. Crafted for the Stars.
             </div>
-            <div class="flex gap-6 text-slate-400">
-                <a href="#" class="hover:text-white"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-                <a href="#" class="hover:text-white"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                <a href="#" class="hover:text-white"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+            <div class="flex gap-4">
+                <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors"><i data-lucide="twitter"
+                        class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors"><i data-lucide="instagram"
+                        class="w-5 h-5"></i></a>
             </div>
         </div>
     </footer>
@@ -605,9 +462,105 @@
         </div>
     </div>
 
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         lucide.createIcons();
 
+        // PLANET DATA
+        const planets = {
+            sun: { name: "Sun", message: "Shine your light without apology.", class: "planet-sun" },
+            mercury: { name: "Mercury", message: "Your voice is your power.", class: "planet-mercury" },
+            venus: { name: "Venus", message: "Embrace the beauty within.", class: "planet-venus" },
+            earth: { name: "Earth", message: "Stay rooted in your truth.", class: "planet-earth" },
+            mars: { name: "Mars", message: "Conquer your fears.", class: "planet-mars" },
+            jupiter: { name: "Jupiter", message: "Expand your horizon.", class: "planet-jupiter" },
+            saturn: { name: "Saturn", message: "I want you to grow.", class: "planet-saturn" },
+            rahu: { name: "Rahu", message: "I'm glad you are finally aware.", class: "planet-rahu" },
+            ketu: { name: "Ketu", message: "I hope you don't lose track this time.", class: "planet-ketu" }
+        };
+
+        const planetKeys = Object.keys(planets);
+        let isShuffling = false;
+
+        function selectPlanet(key) {
+            if (isShuffling) return;
+
+            const data = planets[key];
+            const planetEl = document.getElementById('current-planet');
+            const nameEl = document.getElementById('planet-name');
+            const msgEl = document.getElementById('planet-message');
+
+            // Update Visual
+            planetEl.className = `planet ${data.class}`;
+
+            // Update Text
+            nameEl.innerText = data.name;
+            msgEl.innerText = `"${data.message}"`;
+
+            // Update Active Button
+            document.querySelectorAll('.planet-nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`button[onclick="selectPlanet('${key}')"]`).classList.add('active');
+        }
+
+        function shufflePlanets() {
+            if (isShuffling) return;
+            isShuffling = true;
+
+            let count = 0;
+            const maxCount = 15;
+            const interval = setInterval(() => {
+                const randomKey = planetKeys[Math.floor(Math.random() * planetKeys.length)];
+
+                // Quick visual update without text
+                document.getElementById('current-planet').className = `planet ${planets[randomKey].class}`;
+
+                count++;
+                if (count >= maxCount) {
+                    clearInterval(interval);
+                    isShuffling = false;
+                    selectPlanet(randomKey); // Settle on final planet
+                }
+            }, 100);
+        }
+
+        // Intro Sequence Logic (Existing)
+        function runIntroSequence() {
+            const screens = [1, 2, 3, 4];
+            let currentScreen = 1;
+
+            // Screen 1 duration: 3.5s
+            setTimeout(() => { transitionScreen(1, 2); }, 3500);
+            // Screen 2 duration: 3.5s
+            setTimeout(() => { transitionScreen(2, 3); }, 7000);
+            // Screen 3 duration: 3.5s
+            setTimeout(() => { transitionScreen(3, 4); }, 10500);
+        }
+
+        function transitionScreen(from, to) {
+            const fromEl = document.getElementById(`screen-${from}`);
+            const toEl = document.getElementById(`screen-${to}`);
+            if (fromEl) {
+                fromEl.classList.add('fade-out');
+                fromEl.classList.remove('active');
+            }
+            if (toEl) {
+                toEl.classList.add('active');
+                const relativeDiv = toEl.querySelector('div.relative');
+                if (relativeDiv) relativeDiv.classList.add('fade-in');
+            }
+        }
+
+        function endIntro() {
+            const overlay = document.getElementById('intro-overlay');
+            overlay.style.opacity = '0';
+            overlay.style.pointerEvents = 'none';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 1000);
+        }
+
+        // Early Access Modal functions (kept as they are still referenced by the nav button)
         function openEarlyAccess() {
             const modal = document.getElementById('earlyAccessModal');
             modal.classList.remove('hidden');
@@ -671,49 +624,7 @@
                     }, 3000);
                 });
         }
-        function runIntroSequence() {
-            const screens = [1, 2, 3, 4];
-            let currentScreen = 1;
 
-            // Screen 1 duration: 3.5s
-            setTimeout(() => {
-                transitionScreen(1, 2);
-            }, 3500);
-
-            // Screen 2 duration: 3.5s
-            setTimeout(() => {
-                transitionScreen(2, 3);
-            }, 7000);
-
-            // Screen 3 duration: 3.5s
-            setTimeout(() => {
-                transitionScreen(3, 4);
-            }, 10500);
-        }
-
-        function transitionScreen(from, to) {
-            const fromEl = document.getElementById(`screen-${from}`);
-            const toEl = document.getElementById(`screen-${to}`);
-
-            // Fade out current
-            fromEl.classList.add('fade-out');
-            fromEl.classList.remove('active');
-
-            // Fade in next
-            toEl.classList.add('active');
-            toEl.querySelector('div.relative').classList.add('fade-in');
-        }
-
-        function endIntro() {
-            const overlay = document.getElementById('intro-overlay');
-            overlay.style.opacity = '0';
-            overlay.style.pointerEvents = 'none';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 1000);
-        }
-
-        // Start sequence on load
         window.addEventListener('load', runIntroSequence);
     </script>
 </body>
