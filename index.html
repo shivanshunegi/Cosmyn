@@ -149,6 +149,111 @@
         .intro-screen.active {
             display: flex;
         }
+
+        /* Shooting Star Animation */
+        .shooting-star {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 2px;
+            background: linear-gradient(-45deg, rgba(255, 255, 255, 1), rgba(0, 0, 255, 0));
+            border-radius: 999px;
+            filter: drop-shadow(0 0 6px rgba(105, 155, 255, 1));
+            animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+        }
+
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            top: calc(50% - 1px);
+            right: 0;
+            height: 2px;
+            background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgba(255, 255, 255, 1), rgba(0, 0, 255, 0));
+            transform: translateX(50%) rotateZ(45deg);
+            border-radius: 100%;
+            animation: shining 3000ms ease-in-out infinite;
+        }
+
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            top: calc(50% - 1px);
+            right: 0;
+            height: 2px;
+            background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgba(255, 255, 255, 1), rgba(0, 0, 255, 0));
+            transform: translateX(50%) rotateZ(45deg);
+            border-radius: 100%;
+            animation: shining 3000ms ease-in-out infinite;
+        }
+
+        @keyframes tail {
+            0% {
+                width: 0;
+            }
+
+            30% {
+                width: 100px;
+            }
+
+            100% {
+                width: 0;
+            }
+        }
+
+        @keyframes shooting {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(300px);
+            }
+        }
+
+        @keyframes shining {
+            0% {
+                width: 0;
+            }
+
+            50% {
+                width: 30px;
+            }
+
+            100% {
+                width: 0;
+            }
+        }
+
+        /* Star Positioning */
+        .star-1 {
+            top: 0;
+            left: 50%;
+            animation-delay: 0ms;
+        }
+
+        .star-2 {
+            top: 20%;
+            left: 20%;
+            animation-delay: 2000ms;
+        }
+
+        .star-3 {
+            top: 60%;
+            left: 80%;
+            animation-delay: 4000ms;
+        }
+
+        .star-4 {
+            top: 40%;
+            left: 10%;
+            animation-delay: 1500ms;
+        }
+
+        .star-5 {
+            top: 80%;
+            left: 60%;
+            animation-delay: 3500ms;
+        }
     </style>
 </head>
 
@@ -156,7 +261,16 @@
 
     <!-- INTRO OVERLAY -->
     <div id="intro-overlay"
-        class="fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center transition-colors duration-1000">
+        class="fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center transition-colors duration-1000 overflow-hidden">
+
+        <!-- Shooting Stars Container -->
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="shooting-star star-1" style="transform: rotate(-45deg);"></div>
+            <div class="shooting-star star-2" style="transform: rotate(-45deg);"></div>
+            <div class="shooting-star star-3" style="transform: rotate(-45deg);"></div>
+            <div class="shooting-star star-4" style="transform: rotate(-45deg);"></div>
+            <div class="shooting-star star-5" style="transform: rotate(-45deg);"></div>
+        </div>
 
         <!-- Screen 1 -->
         <div id="screen-1" class="intro-screen active">
