@@ -684,17 +684,19 @@
             btn.disabled = true;
 
             // Google Apps Script Web App URL
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwMoFoeoLcMG2qPE1kC6bs6iZjFOzg9lyGy-ZahHA4Gcyy4YZojqm0DAn1-h9MTBcvXrS/exec';
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVle0A4Fqg0cyuSSp5AG917ki-vUY1edO8VB28Bj__9eU60rKBPJIcVZ5htZJuCVDMBA/exec';
 
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
+            // Convert data to URL-encoded format for Google Apps Script
+            const params = new URLSearchParams();
+            params.append('name', data.name);
+            params.append('email', data.email);
+
+            fetch(SCRIPT_URL + '?' + params.toString(), {
+                method: 'GET',
+                redirect: 'follow'
             })
-                .then(() => {
+                .then(response => response.text())
+                .then(result => {
                     // Success
                     btn.innerText = "You're on the list! ✨";
                     btn.classList.remove('from-amber-400', 'to-amber-600');
